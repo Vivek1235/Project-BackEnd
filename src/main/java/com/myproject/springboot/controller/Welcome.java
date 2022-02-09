@@ -36,7 +36,7 @@ public class Welcome
 	   User userExists=repository.findByEmail(user.getEmail());
 	   
 		   if(userExists!=null && userExists.getPassword().equals(user.getPassword()))
-		         return user;
+		         return userExists;
 		   else
 			   throw new Exception("error occured");
 	   
@@ -65,9 +65,10 @@ public class Welcome
 		
 		User userMatch=repository.findByEmail(user);
 		List<Skills> skills=skillsRepository.findBySkillUserId(userMatch);
-		
+		System.out.println(skills);
 		if(skills!=null)
-			{	List<skillModel> skill=new ArrayList<skillModel>();			
+		{	
+			List<skillModel> skill=new ArrayList<skillModel>();			
 				for(Skills i:skills)
 				{
 				   skillModel temp=new skillModel(i.getSkill(),i.getLevel());
@@ -79,61 +80,6 @@ public class Welcome
 			throw new Exception("no Skills exist");
 	}
 	
-	/*
-	@GetMapping("/welcome")
-	@ResponseBody
-	public String welcome()
-	{
-		return "welcome";
-	}
-	
-	@CrossOrigin
-	@GetMapping("/registration")
-	@ResponseBody
-	public String  welcomeMessage(ModelMap model)
-	{
-		return "registration";
-	}
-	@GetMapping("/signup")
-	public String signUpPage()
-	{
-		return "signup";
-	}
-	@PostMapping("/signup")
-	public String redirectToLogin(@RequestParam Map<String,String> parameters,ModelMap model)
-	{   
-		if(repository.findByEmail(parameters.get("email"))==null)
-		    repository.save(new User(parameters.get("email"),parameters.get("password")));
-		else
-			model.put("message", "Already Registered Login Now");
-		return "redirect:/login";
-			
-		
-		
-		
-	}
-	@CrossOrigin(origins="*")
-	@PostMapping(path="/registration")
-	@ResponseBody
-	public boolean register(@RequestBody User user)
-	{   
-		if(repository.findByEmail(user.getEmail())==null)
-		{ repository.save(new User(user.getEmail(),user.getPassword()));
-		    return false;}
-		else
-			return true;
-		
-			
-		
-		
-	}
-	@CrossOrigin
-	@GetMapping("/login")
-	@ResponseBody
-	public Boolean  validateUser(ModelMap model)
-	{
-		return true;
-	}*/
 	
 }
 	

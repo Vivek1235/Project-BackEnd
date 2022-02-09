@@ -18,8 +18,9 @@ public class Skills {
 	
 	protected Skills() {
 	}
-	public Skills(String skill, User user,Float level) {
+	public Skills(int id,String skill, User user,Float level) {
 		super();
+		this.id=id;
 		this.skill = skill;
 		this.skillUserId = user;
 		this.level=level;

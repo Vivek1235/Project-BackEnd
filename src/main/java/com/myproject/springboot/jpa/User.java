@@ -8,6 +8,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
+	
+	
 	private String email;
 	private String password;
 	
@@ -31,16 +33,17 @@ public class User {
 	
 	public User(String email, String password) {
 		super();
+//		this.id=id;
 		this.email = email;
 		this.password = password;
 	}
-	public List<Skills> getSkill() {
-		return skill;
-	}
-//
-	public Profile getProfile() {
-		return profile;
-	}
+//	public List<Skills> getSkill() {
+//		return skill;
+//	}
+////
+//	public Profile getProfile() {
+//		return profile;
+//	}
 
 	public long getId() {
 		return id;
