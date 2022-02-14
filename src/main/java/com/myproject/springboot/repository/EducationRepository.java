@@ -10,6 +10,6 @@ import com.myproject.springboot.entity.Skills;
 import com.myproject.springboot.entity.User;
 
 public interface EducationRepository extends CrudRepository<Education,Integer>{
-	public List<Education> findByEducationUserIdId(int userId);
+	public List<Education> findByUserIdId(int userId);
 	public Education findById(int id);
 }

@@ -8,18 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Education {
 	
 	@Id
-	@GeneratedValue
 	private int id;
 	
 	private String schoolName;
 	private String degreeName;
+	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
 	private Float grade;
 	private String descript;
@@ -27,14 +30,14 @@ public class Education {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@JsonIgnore
-	private User educationUserId;
+	private User userId;
 
 	
 	protected Education() {
 	}
 
 	public Education(String schoolName, String degreeName, Date startDate, Date endDate, Float grade, String desc,
-			User educationUserId) {
+			User userId) {
 		super();
 		this.schoolName = schoolName;
 		this.degreeName = degreeName;
@@ -42,7 +45,7 @@ public class Education {
 		this.endDate = endDate;
 		this.grade = grade;
 		this.descript = desc;
-		this.educationUserId = educationUserId;
+		this.userId = userId;
 	}
 
 	public String getSchoolName() {
@@ -69,12 +72,19 @@ public class Education {
 		return descript;
 	}
 
-	public User getEducationUserId() {
-		return educationUserId;
+	public User getUserId() {
+		return userId;
 	}
 	public void setEducationUserId(User educationUserId) {
-		this.educationUserId = educationUserId;
+		this.userId = educationUserId;
 	}
 
+	public int getId() {
+		return id;
+	}
 
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+    
 }

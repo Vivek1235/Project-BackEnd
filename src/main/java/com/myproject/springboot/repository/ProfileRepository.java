@@ -6,5 +6,5 @@ import com.myproject.springboot.entity.Profile;
 
 public interface ProfileRepository extends CrudRepository<Profile, Integer>{
 	
-  public Profile findByProfileUserIdId(int userId);
+  public Profile findByUserIdId(int userId);
 }

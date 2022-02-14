@@ -9,7 +9,7 @@ import com.myproject.springboot.entity.Skills;
 import com.myproject.springboot.entity.User;
 
 public interface ExperienceRepository extends CrudRepository<Experience,Integer>{
-	public List<Experience> findByExperienceUserIdId(int userId);
+	public List<Experience> findByUserIdId(int userId);
 	public Experience findById(int id);
 
 }

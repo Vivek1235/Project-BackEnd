@@ -39,7 +39,7 @@ public class UserService {
 			{  userRepository.save(new User(user.getEmail(),user.getPassword()));
 		      User userCreated=userRepository.findByEmail(user.getEmail());
 		  
-		   profileRepository.save(new Profile(user.getEmail(),user.getFirstName(),user.getLastName(), user.getPhoneNumber(), null, null, null,userCreated));
+		   profileRepository.save(new Profile(user.getEmail(),user.getFirstName(),user.getLastName(), user.getPhoneNumber(), null, null, null,userCreated,null));
 		   return true;
 		}
 	else

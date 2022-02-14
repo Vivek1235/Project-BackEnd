@@ -2,6 +2,7 @@ package com.myproject.springboot.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
@@ -10,7 +11,6 @@ import java.util.Date;
 public class Experience {
 	
 	@Id
-	@GeneratedValue
 	private int id;
 	
 	private String title;
@@ -18,14 +18,15 @@ public class Experience {
 	private String companyName;
 	private String location;
 	
-
+    @JsonFormat(pattern="yyyy-MM-dd")
 	private Date startDate;
+    @JsonFormat(pattern="yyyy-MM-dd")
 	private Date endDate;
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	@JsonIgnore
-	private User experienceUserId;
+	private User userId;
 	
 	
 
@@ -41,7 +42,21 @@ public class Experience {
 		this.location = location;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.experienceUserId = experienceUserId;
+		this.userId = experienceUserId;
+	}
+	
+
+	public Experience(int id, String title, String employmentType, String companyName, String location, Date startDate,
+			Date endDate, User userId) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.employmentType = employmentType;
+		this.companyName = companyName;
+		this.location = location;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.userId = userId;
 	}
 
 	public int getId() {
@@ -72,12 +87,14 @@ public class Experience {
 		return endDate;
 	}
 
-	public User getExperienceUserId() {
-		return experienceUserId;
+	public User getUserId() {
+		return userId;
 	}
-	public void setExperienceUserId(User experienceUserId) {
-		this.experienceUserId = experienceUserId;
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
+
+	
 	
 
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.myproject.springboot.entity.Education;
 import com.myproject.springboot.entity.Experience;
 import com.myproject.springboot.repository.EducationRepository;
-import com.myproject.springboot.repository.ExperienceRepository;
 import com.myproject.springboot.repository.UsersRepository;
 
 @Service
@@ -26,21 +25,21 @@ public class EducationService {
 	public List<Education> getUserEducationDetails(int userId) throws Exception
 	{
 
-		List<Education> education=educationRepository.findByEducationUserIdId(userId);
+		List<Education> education=educationRepository.findByUserIdId(userId);
+		
 		if(education!=null)
 		{	
-			
-			 return education;
-			}
+			return education;
+		}
 		else
-			throw new Exception("no experiences exist");
+			throw new Exception("no education exist");
 	}
 	public List<Education> deleteEducation(int userId,int id) throws Exception
 	{
 		 Education education=educationRepository.findById(id);
 		if(education!=null)
 			{educationRepository.deleteById(id);
-			  return educationRepository.findByEducationUserIdId(userId);
+			  return educationRepository.findByUserIdId(userId);
 			}
 		else
 			throw new Exception("choosen Education doesn't exist");
@@ -52,6 +51,27 @@ public class EducationService {
 		      System.out.println(newEducation);
 			   return educationRepository.save(newEducation);
 		   
+		
+	}
+	public Education getUserEducation(int Id) throws Exception
+	{
+
+		Education updateEducation=educationRepository.findById(Id);
+
+		if(updateEducation!=null)
+		{	
+			return updateEducation;
+			}
+		else
+			throw new Exception("no education match");
+	}
+	public Education updateEducation(Education updateEducation,int userId) throws Exception
+	{
+		int Id=updateEducation.getId();
+		updateEducation.setUserId(userRepository.findById(userId));
+		return educationRepository.save(updateEducation);
+	
+
 		
 	}
 }

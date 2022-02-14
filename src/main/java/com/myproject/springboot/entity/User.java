@@ -6,23 +6,22 @@ import java.util.List;
 @Entity
 public class User {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
 	
 	private String email;
 	private String password;
 	
-	@OneToMany(mappedBy="skillUserId")
+	@OneToMany(mappedBy="userId")
 	private List<Skills> skill;
 	
-	@OneToOne(mappedBy="profileUserId")
+	@OneToOne(mappedBy="userId")
 	private Profile profile;
 	
-	@OneToMany(mappedBy="experienceUserId")
+	@OneToMany(mappedBy="userId")
 	private List<Experience> experience;
 	
-	@OneToMany(mappedBy="educationUserId")
+	@OneToMany(mappedBy="userId")
 	private List<Education> education;
 	
 	

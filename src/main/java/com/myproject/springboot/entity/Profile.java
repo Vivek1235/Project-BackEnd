@@ -2,6 +2,7 @@ package com.myproject.springboot.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
@@ -9,7 +10,6 @@ import java.util.Date;
 @Entity
 public class Profile {
 	@Id
-	@GeneratedValue
 	private int id;
 	
 	private String email;
@@ -17,12 +17,14 @@ public class Profile {
 	private String lastName;
 	private String phoneNumber;
 	private String address;
+	 @JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOfBirth;
 	private String imageUrl;
+	private String about;
 	@OneToOne
 	@JoinColumn(name="user_id")
 	@JsonIgnore
-	private User profileUserId;
+	private User userId;
 
 	
 	protected Profile() {
@@ -30,7 +32,7 @@ public class Profile {
 	}
 
 	public Profile(String email, String firstName, String lastName, String phoneNumber, String address, Date dateOfBirth,
-			String imageUrl, User profileUserId) {
+			String imageUrl, User userId,String about) {
 		super();
 		this.email = email;
 		this.firstName = firstName;
@@ -39,8 +41,9 @@ public class Profile {
 		this.address = address;
 		this.dateOfBirth = dateOfBirth;
 		this.imageUrl = imageUrl;
-		this.profileUserId = profileUserId;
-	}
+		this.userId = userId;
+		this.setAbout(about);
+		}
 
 	
 	public int getId() {
@@ -75,9 +78,22 @@ public class Profile {
 		return imageUrl;
 	}
 
-	public User getProfileUserId() {
-		return profileUserId;
+	public User getUserId() {
+		return userId;
 	}
+
+	public String getAbout() {
+		return about;
+	}
+
+	public void setAbout(String about) {
+		this.about = about;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+	
 	
 
 }

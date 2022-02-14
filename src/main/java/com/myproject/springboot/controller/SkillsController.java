@@ -3,6 +3,7 @@ package com.myproject.springboot.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +33,14 @@ public class SkillsController {
 	
 	
 	@CrossOrigin
-	@PutMapping("/skills/{Id}")
-	public Skills updateSkillById(@RequestBody Skills skill,@PathVariable int Id)
+	@PutMapping(value="/skills/{userId}")
+	public Skills updateSkillById(@RequestBody Skills skill,@PathVariable int userId) throws Exception
 	{
-		return skillsService.updateSkill(skill,Id);
+		return skillsService.updateSkill(skill,userId);
 	}
+	
+	
+	
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping("/skills/{userId}")
@@ -55,4 +59,13 @@ public class SkillsController {
 	
 		return skillsService.addUserSkill(userId,newSkill);
 	}
+	
+	@CrossOrigin(origins="http://localhost:4200")
+	@GetMapping("/skills/skill/{Id}")
+	public  Skills getSkillById(@PathVariable int Id) throws Exception
+	{
+		
+		return skillsService.getSkill(Id);
+	}
+	
 }
