@@ -32,17 +32,11 @@ public class User {
 	
 	public User(String email, String password) {
 		super();
-//		this.id=id;
+
 		this.email = email;
 		this.password = password;
 	}
-//	public List<Skills> getSkill() {
-//		return skill;
-//	}
-////
-//	public Profile getProfile() {
-//		return profile;
-//	}
+
 
 	public int getId() {
 		return id;

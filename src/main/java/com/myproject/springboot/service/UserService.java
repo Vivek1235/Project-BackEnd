@@ -39,7 +39,7 @@ public class UserService {
 			{  userRepository.save(new User(user.getEmail(),user.getPassword()));
 		      User userCreated=userRepository.findByEmail(user.getEmail());
 		  
-		   profileRepository.save(new Profile(user.getEmail(),user.getFirstName(),user.getLastName(), user.getPhoneNumber(), null, null, null,userCreated,null));
+		   profileRepository.save(new Profile(user.getEmail(),user.getFirstName(),user.getLastName(), user.getPhoneNumber(), null, null,"https://www.kindpng.com/picc/m/451-4517876_default-profile-hd-png-download.png",userCreated,null));
 		   return true;
 		}
 	else

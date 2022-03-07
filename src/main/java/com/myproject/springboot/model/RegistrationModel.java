@@ -5,6 +5,7 @@ public class RegistrationModel {
 	private String firstName;
 	private String lastName;
 	private String password;
+	
 	private String phoneNumber;
 	private RegistrationModel()
 	{}
